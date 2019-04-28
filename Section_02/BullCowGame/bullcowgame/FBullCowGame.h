@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-// this is a test
+
 // NEVER use namespace in a header file
 
 class FBullCowGame {
