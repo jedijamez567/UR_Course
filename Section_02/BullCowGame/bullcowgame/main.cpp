@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "FBullCowGame.h"
 using namespace std;
 
 // endl flushes the output buffer
@@ -13,11 +14,14 @@ using namespace std;
 // for do / while loop the code gets executed once before the check occurs
 
 void PrintIntro();
-string GetGuess();
-void Guess();
+void GetGuess();
 bool bToPlayAgain();
 void PlayGame();
 
+FBullCowGame BCGame; // instantiation of a new game
+
+
+// the entry point for the app
 int main()
 {
 	do
@@ -31,22 +35,14 @@ int main()
 
 void PlayGame()
 {
+	BCGame.Reset();
+	int MaxTries = BCGame.GetMaxTries();
 		// Guess NUMBER_OF_LOOPS times.
-	constexpr int NUMBER_OF_LOOPS = 5;
-	for (int i = 0; i < NUMBER_OF_LOOPS; i++)
+	for (int i = 0; i < MaxTries; i++)
 	{
-		Guess();
+		GetGuess();
 		cout << endl;
 	}
-}
-
-void Guess()
-{
-	// Repeat the guess back to them
-	string Guess = GetGuess();
-	cout << "Your guess was: " << Guess;
-	cout << endl;
-	return;
 }
 
 bool bToPlayAgain()
@@ -58,13 +54,16 @@ bool bToPlayAgain()
 	return Repeat;
 }
 
-string GetGuess()
+void GetGuess()
 {
 	// Get a guess from the player
+	int currentTry = BCGame.GetCurrentTry();
 	string Guess = "";
-	cout << "Enter your guess here: ";
+	cout << "Try " << currentTry << ". Enter your guess here: ";
 	getline(cin, Guess);
-	return Guess;
+	cout << "Your guess was: " << Guess;
+	cout << endl;
+	return;
 }
 
 void PrintIntro()
@@ -72,7 +71,6 @@ void PrintIntro()
 	// Introduce the game
 	constexpr int WORD_LENGTH = 5;
 	cout << "Welcome to Bulls and Cows" << endl;
-	cout << "Can you guess the " << WORD_LENGTH;
-	cout << " letter isogram that I'm thinking of?\n";
+	cout << "Can you guess the " << WORD_LENGTH << " letter isogram that I'm thinking of?\n";
 	return;
 }

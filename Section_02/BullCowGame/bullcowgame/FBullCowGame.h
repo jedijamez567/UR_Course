@@ -4,13 +4,15 @@
 // NEVER use namespace in a header file
 
 class FBullCowGame {
-public: 
+public:
+	FBullCowGame(); // constructor
+
 	void Reset(); // TODO make a more rich return value
-	int GetMaxTries();
-	int GetCurrentTry();
+	int GetMaxTries() const;
+	int GetCurrentTry() const;
+	bool Outcome() const;
 	bool CheckWord(std::string);// TODO make a more rich return value
 	std::string GenerateWord();
-	bool Outcome();
 
 
 
